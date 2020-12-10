@@ -17,7 +17,7 @@ namespace Bytecom.Administracao
             InitializeComponent();
         }
 
-        private void incluirButtonOnClick(object sender, EventArgs e)
+        private void IncluirButtonOnClick(object sender, EventArgs e)
         {
             Pessoa pessoa = new Pessoa(0);
             pessoa.Show();

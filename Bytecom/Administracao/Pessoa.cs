@@ -14,7 +14,6 @@ namespace Bytecom.Administracao
 {
     public partial class Pessoa : Form
     {
-        Conexao conexao = new Conexao();
         /*+  private int id;
           private String nome;
           private String cpfCnpj;
@@ -28,7 +27,7 @@ namespace Bytecom.Administracao
           private DateTime data_cadastro;
           private DateTime data_atualizacao;
           private DateTime data_ultima_venda;*/
-        List<Campo> campo;
+        readonly List<Campo> campo;
         public Pessoa(int id)
         {
             InitializeComponent();
@@ -37,21 +36,23 @@ namespace Bytecom.Administracao
 
         private List<Campo> Campo()
         {
-            List<Campo> campo = new List<Campo>();
-            campo.Add(new Campo("Código", "ID", "Int", false));
-            campo.Add(new Campo("Nome", "NOME", "String", true));
-            campo.Add(new Campo("CPF/CNPJ", "CPFCNPJ", "String", true));
-            campo.Add(new Campo("Telefone", "TELEFONE", "String", true));
-            campo.Add(new Campo("Celular", "CELULAR", "String", false));
-            campo.Add(new Campo("Endereço", "ENDERECO", "String", true));
-            campo.Add(new Campo("Bairro", "BAIRRO", "String", true));
-            campo.Add(new Campo("Complemento", "COMPLEMENTO", "String", false));
-            campo.Add(new Campo("Cidade", "CIDADE", "String", true));
-            campo.Add(new Campo("Cep", "CEP", "String", true));
-            campo.Add(new Campo("Data de cadastro", "DATA_CADASTRO", "Datetime", false));
-            campo.Add(new Campo("Data de atualização", "DATA_ATUALIZACAO", "Datetime", false));
-            campo.Add(new Campo("Data da última venda", "DATA_ULTIMA_VENDA", "Datetime", false));
-           
+            List<Campo> campo = new List<Campo>
+            {
+                new Campo("Código", "ID", "Int", false),
+                new Campo("Nome", "NOME", "String", true),
+                new Campo("CPF/CNPJ", "CPFCNPJ", "String", true),
+                new Campo("Telefone", "TELEFONE", "String", true),
+                new Campo("Celular", "CELULAR", "String", false),
+                new Campo("Endereço", "ENDERECO", "String", true),
+                new Campo("Bairro", "BAIRRO", "String", true),
+                new Campo("Complemento", "COMPLEMENTO", "String", false),
+                new Campo("Cidade", "CIDADE", "String", true),
+                new Campo("Cep", "CEP", "String", true),
+                new Campo("Data de cadastro", "DATA_CADASTRO", "Datetime", false),
+                new Campo("Data de atualização", "DATA_ATUALIZACAO", "Datetime", false),
+                new Campo("Data da última venda", "DATA_ULTIMA_VENDA", "Datetime", false)
+            };
+
             return campo;
         }
 

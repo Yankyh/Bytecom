@@ -52,7 +52,7 @@ namespace Bytecom.Administracao
             this.incluirButton.TabIndex = 1;
             this.incluirButton.Text = "Incluir";
             this.incluirButton.UseVisualStyleBackColor = true;
-            this.incluirButton.Click += new System.EventHandler(this.incluirButtonOnClick);
+            this.incluirButton.Click += new System.EventHandler(this.IncluirButtonOnClick);
             // 
             // button2
             // 

@@ -42,7 +42,7 @@ namespace Bytecom
             this.pedidoButton.TabIndex = 0;
             this.pedidoButton.Text = "Pedido";
             this.pedidoButton.UseVisualStyleBackColor = true;
-            this.pedidoButton.Click += new System.EventHandler(this.pedidoButtonOnClick);
+            this.pedidoButton.Click += new System.EventHandler(this.PedidoButtonOnClick);
             // 
             // pessoaButton
             // 
@@ -52,7 +52,7 @@ namespace Bytecom
             this.pessoaButton.TabIndex = 1;
             this.pessoaButton.Text = "Pessoa";
             this.pessoaButton.UseVisualStyleBackColor = true;
-            this.pessoaButton.Click += new System.EventHandler(this.pessoaButtonOnClick);
+            this.pessoaButton.Click += new System.EventHandler(this.PessoaButtonOnClick);
             // 
             // produtoButton
             // 
@@ -62,7 +62,7 @@ namespace Bytecom
             this.produtoButton.TabIndex = 2;
             this.produtoButton.Text = "Produto";
             this.produtoButton.UseVisualStyleBackColor = true;
-            this.produtoButton.Click += new System.EventHandler(this.produtoButtonOnClick);
+            this.produtoButton.Click += new System.EventHandler(this.ProdutoButtonOnClick);
             // 
             // Bytecom
             // 

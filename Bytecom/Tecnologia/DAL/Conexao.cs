@@ -55,11 +55,13 @@ namespace Bytecom.Tecnologia.DAO
         SqlDbType tipo, int tamanho, object valor)
         {
             // Cria a instância do Parâmetro e adiciona os valores
-            parametro = new SqlParameter();
-            parametro.ParameterName = nome;
-            parametro.SqlDbType = tipo;
-            parametro.Size = tamanho;
-            parametro.Value = valor;
+            parametro = new SqlParameter
+            {
+                ParameterName = nome,
+                SqlDbType = tipo,
+                Size = tamanho,
+                Value = valor
+            };
             // Adiciona ao comando SQL o parâmetro
             comando.Parameters.Add(parametro);
         }
@@ -68,10 +70,12 @@ namespace Bytecom.Tecnologia.DAO
         public void AdicionarParametro(string nome, SqlDbType tipo, object valor)
         {
             // Cria a instância do Parâmetro e adiciona os valores
-            SqlParameter parametro = new SqlParameter();
-            parametro.ParameterName = nome;
-            parametro.SqlDbType = tipo;
-            parametro.Value = valor;
+            SqlParameter parametro = new SqlParameter
+            {
+                ParameterName = nome,
+                SqlDbType = tipo,
+                Value = valor
+            };
             // Adiciona ao comando SQL o parâmetro
             comando.Parameters.Add(parametro);
         }

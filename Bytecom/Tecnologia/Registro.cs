@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Bytecom.Tecnologia.DAO;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +12,18 @@ namespace Bytecom.Tecnologia
 {
     class Registro
     {
+        readonly Conexao conexao = new Conexao();
 
-        public static int ProximoId(String tabela)
+        public int ProximoId(String tabela)
         {
             int proximoId = 0;
 
+            foreach (DataRow row in conexao.ExecutaConsulta("SELECT MAX(ID) FROM " + tabela).Rows)
+            {
+                return proximoId = (int)(row["id"]);
+            }
 
-            return proximoId;
+            return 0;
         }
         public static int Gravar(List<Campo> campo, Form form, String tabela)
         {
