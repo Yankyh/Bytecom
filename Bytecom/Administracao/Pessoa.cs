@@ -28,10 +28,20 @@ namespace Bytecom.Administracao
           private DateTime data_atualizacao;
           private DateTime data_ultima_venda;*/
         readonly List<Campo> campo;
+        private static int idRegistro;
+
+        public static int IdRegistro { get => idRegistro; set => idRegistro = value; }
+
         public Pessoa(int id)
         {
             InitializeComponent();
             campo = Campo();
+            IdRegistro = id;
+
+            if(idRegistro != 0)
+            {
+                CarregarFormulario();
+            }
         }
 
         private List<Campo> Campo()
@@ -40,7 +50,7 @@ namespace Bytecom.Administracao
             {
                 new Campo("Código", "ID", "Int", false),
                 new Campo("Nome", "NOME", "String", true),
-                new Campo("CPF/CNPJ", "CPFCNPJ", "String", true),
+                new Campo("CPF/CNPJ", "CPF_CNPJ", "String", true),
                 new Campo("Telefone", "TELEFONE", "String", true),
                 new Campo("Celular", "CELULAR", "String", false),
                 new Campo("Endereço", "ENDERECO", "String", true),
@@ -56,13 +66,25 @@ namespace Bytecom.Administracao
             return campo;
         }
 
+        private void CarregarFormulario()
+        {
+           Registro.Selecionar(campo, this, GetTabela(), IdRegistro);
+        }
         private void GravarOnClick(object sender, EventArgs e)
         {
             if (ValidarPreenchimento())
             {
-                Registro.Gravar(campo, this, GetTabela());
+                if (idRegistro == 0)
+                {
+                    idRegistro = Registro.ProximoId(GetTabela());
+                    id.Text = idRegistro.ToString();
+                    Registro.Gravar(campo, this, GetTabela());
+                }
+                else
+                {
+                    Registro.Atualizar(campo, this, GetTabela(), idRegistro);
+                }
             }
-
         }
 
         //Criei um método separado, para caso eu queria adicionar campos dependendo da regra de negócio.

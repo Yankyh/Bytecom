@@ -22,5 +22,11 @@ namespace Bytecom.Administracao
             Pessoa pessoa = new Pessoa(0);
             pessoa.Show();
         }
+
+        private void AlterarOnClick(object sender, EventArgs e)
+        {
+            Pessoa pessoa = new Pessoa(0);
+            pessoa.Show();
+        }
     }
 }

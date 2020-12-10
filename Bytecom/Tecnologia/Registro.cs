@@ -12,21 +12,25 @@ namespace Bytecom.Tecnologia
 {
     class Registro
     {
-        readonly Conexao conexao = new Conexao();
 
-        public int ProximoId(String tabela)
+        public static int ProximoId(String tabela)
         {
-            int proximoId = 0;
+            Conexao conexao = new Conexao();
 
-            foreach (DataRow row in conexao.ExecutaConsulta("SELECT MAX(ID) FROM " + tabela).Rows)
+            foreach (DataRow row in conexao.ExecutaConsulta("SELECT MAX(ID) + 1 id FROM " + tabela).Rows)
             {
-                return proximoId = (int)(row["id"]);
+                if (row["id"] != DBNull.Value)
+                {
+                    return _ = (Convert.ToInt32(row["id"]));
+                }
+
             }
 
-            return 0;
+            return 1;
         }
         public static int Gravar(List<Campo> campo, Form form, String tabela)
         {
+            Conexao conexao = new Conexao();
             int id = 0;
             string insert = "INSERT INTO " + tabela + " (";
 
@@ -49,22 +53,96 @@ namespace Bytecom.Tecnologia
 
                 if (campo.Contains(campoAtual))
                 {
-                    if ((campoAtual.Tipo == "String") || (campoAtual.Tipo == "Datetime"))
+                    if (String.IsNullOrWhiteSpace(item.Text))
                     {
-                        insert = insert  + "\"" + item.Text + "\", ";
+                        insert = insert + " null, ";
                     }
                     else
                     {
-                        insert = insert + item.Text + ",";
+                        if ((campoAtual.Tipo == "String") || (campoAtual.Tipo == "Datetime"))
+                        {
+                            insert = insert + "'" + item.Text + "', ";
+                        }
+                        else
+                        {
+                            insert = insert + item.Text + ",";
+                        }
                     }
-                    
+
                 }
             }
 
             insert = insert.TrimEnd(' ').TrimEnd(',') + ")";
+            conexao.ExecutarDML(insert);
 
-            MessageBox.Show(insert);
             return id;
         }
+
+        public static void Atualizar(List<Campo> campo, Form form, String tabela, int id)
+        {
+            Conexao conexao = new Conexao();
+
+            string update = "UPDATE " + tabela + " SET ";
+
+            //FIELDS
+            foreach (Control item in form.Controls)
+            {
+                Campo campoAtual = campo.Find(x => (x.NomeFisico.ToUpper() == item.Name.ToUpper()) && x.NomeFisico.ToUpper() != "ID");
+
+                if (campo.Contains(campoAtual))
+                {
+                    update = update + campoAtual.NomeFisico + " = ";
+
+                    if (String.IsNullOrWhiteSpace(item.Text))
+                    {
+                        update = update + " null, ";
+                    }
+                    else
+                    {
+                        if ((campoAtual.Tipo == "String") || (campoAtual.Tipo == "Datetime"))
+                        {
+                            update = update + "'" + item.Text + "', ";
+                        }
+                        else
+                        {
+                            update = update + item.Text + ", ";
+                        }
+                    }
+
+                }
+            }
+            update = update.TrimEnd(' ').TrimEnd(',') + "WHERE ID = " + id;
+            conexao.ExecutarDML(update);
+        }
+
+        public static Form Selecionar(List<Campo> campo, Form form, String tabela, int id)
+        {
+            Form formRetorno = form;
+
+            Conexao conexao = new Conexao();
+
+            string select = "SELECT * FROM " + tabela + " WHERE ID = " + id;
+
+            foreach (DataRow row in conexao.ExecutaConsulta(select).Rows)
+            {
+                if (row["id"] != DBNull.Value)
+                {
+                    foreach (Control item in form.Controls)
+                    {
+                        Campo campoAtual = campo.Find(x => (x.NomeFisico.ToUpper() == item.Name.ToUpper()));
+
+                        if (campo.Contains(campoAtual))
+                        {
+                            item.Text = row[campoAtual.NomeFisico].ToString();
+                        }
+                    }
+
+                }
+            }
+
+            return formRetorno;
+        }
+
     }
 }
+

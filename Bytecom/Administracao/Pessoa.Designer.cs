@@ -30,7 +30,7 @@ namespace Bytecom.Administracao
         private void InitializeComponent()
         {
             this.nome = new System.Windows.Forms.TextBox();
-            this.cpfCnpj = new System.Windows.Forms.TextBox();
+            this.cpf_Cnpj = new System.Windows.Forms.TextBox();
             this.telefone = new System.Windows.Forms.TextBox();
             this.endereco = new System.Windows.Forms.TextBox();
             this.bairro = new System.Windows.Forms.TextBox();
@@ -53,6 +53,10 @@ namespace Bytecom.Administracao
             this.id = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cidade = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.cep = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // nome
@@ -62,12 +66,12 @@ namespace Bytecom.Administracao
             this.nome.Size = new System.Drawing.Size(260, 20);
             this.nome.TabIndex = 0;
             // 
-            // cpfCnpj
+            // cpf_Cnpj
             // 
-            this.cpfCnpj.Location = new System.Drawing.Point(288, 38);
-            this.cpfCnpj.Name = "cpfCnpj";
-            this.cpfCnpj.Size = new System.Drawing.Size(154, 20);
-            this.cpfCnpj.TabIndex = 1;
+            this.cpf_Cnpj.Location = new System.Drawing.Point(288, 38);
+            this.cpf_Cnpj.Name = "cpf_Cnpj";
+            this.cpf_Cnpj.Size = new System.Drawing.Size(154, 20);
+            this.cpf_Cnpj.TabIndex = 1;
             // 
             // telefone
             // 
@@ -78,28 +82,28 @@ namespace Bytecom.Administracao
             // 
             // endereco
             // 
-            this.endereco.Location = new System.Drawing.Point(21, 90);
+            this.endereco.Location = new System.Drawing.Point(434, 91);
             this.endereco.Name = "endereco";
-            this.endereco.Size = new System.Drawing.Size(199, 20);
+            this.endereco.Size = new System.Drawing.Size(354, 20);
             this.endereco.TabIndex = 4;
             // 
             // bairro
             // 
-            this.bairro.Location = new System.Drawing.Point(226, 90);
+            this.bairro.Location = new System.Drawing.Point(24, 151);
             this.bairro.Name = "bairro";
             this.bairro.Size = new System.Drawing.Size(199, 20);
             this.bairro.TabIndex = 5;
             // 
             // complemento
             // 
-            this.complemento.Location = new System.Drawing.Point(431, 90);
+            this.complemento.Location = new System.Drawing.Point(229, 151);
             this.complemento.Name = "complemento";
-            this.complemento.Size = new System.Drawing.Size(357, 20);
+            this.complemento.Size = new System.Drawing.Size(559, 20);
             this.complemento.TabIndex = 6;
             // 
             // data_Cadastro
             // 
-            this.data_Cadastro.Location = new System.Drawing.Point(21, 148);
+            this.data_Cadastro.Location = new System.Drawing.Point(21, 209);
             this.data_Cadastro.Name = "data_Cadastro";
             this.data_Cadastro.ReadOnly = true;
             this.data_Cadastro.Size = new System.Drawing.Size(114, 20);
@@ -151,7 +155,7 @@ namespace Bytecom.Administracao
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 74);
+            this.label5.Location = new System.Drawing.Point(431, 75);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 14;
@@ -160,7 +164,7 @@ namespace Bytecom.Administracao
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(223, 74);
+            this.label6.Location = new System.Drawing.Point(21, 135);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(34, 13);
             this.label6.TabIndex = 15;
@@ -169,7 +173,7 @@ namespace Bytecom.Administracao
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(428, 74);
+            this.label7.Location = new System.Drawing.Point(226, 135);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(71, 13);
             this.label7.TabIndex = 16;
@@ -178,7 +182,7 @@ namespace Bytecom.Administracao
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(21, 132);
+            this.label8.Location = new System.Drawing.Point(21, 193);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(89, 13);
             this.label8.TabIndex = 17;
@@ -187,7 +191,7 @@ namespace Bytecom.Administracao
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(138, 132);
+            this.label9.Location = new System.Drawing.Point(138, 193);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(102, 13);
             this.label9.TabIndex = 18;
@@ -196,7 +200,7 @@ namespace Bytecom.Administracao
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(258, 132);
+            this.label10.Location = new System.Drawing.Point(258, 193);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(69, 13);
             this.label10.TabIndex = 19;
@@ -204,7 +208,7 @@ namespace Bytecom.Administracao
             // 
             // data_Atualizacao
             // 
-            this.data_Atualizacao.Location = new System.Drawing.Point(141, 148);
+            this.data_Atualizacao.Location = new System.Drawing.Point(141, 209);
             this.data_Atualizacao.Name = "data_Atualizacao";
             this.data_Atualizacao.ReadOnly = true;
             this.data_Atualizacao.Size = new System.Drawing.Size(114, 20);
@@ -212,7 +216,7 @@ namespace Bytecom.Administracao
             // 
             // data_Ultima_Venda
             // 
-            this.data_Ultima_Venda.Location = new System.Drawing.Point(261, 148);
+            this.data_Ultima_Venda.Location = new System.Drawing.Point(261, 209);
             this.data_Ultima_Venda.Name = "data_Ultima_Venda";
             this.data_Ultima_Venda.ReadOnly = true;
             this.data_Ultima_Venda.Size = new System.Drawing.Size(114, 20);
@@ -255,11 +259,47 @@ namespace Bytecom.Administracao
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Visible = false;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(21, 75);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(40, 13);
+            this.label12.TabIndex = 27;
+            this.label12.Text = "Cidade";
+            // 
+            // cidade
+            // 
+            this.cidade.Location = new System.Drawing.Point(24, 91);
+            this.cidade.Name = "cidade";
+            this.cidade.Size = new System.Drawing.Size(199, 20);
+            this.cidade.TabIndex = 26;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(226, 75);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(26, 13);
+            this.label13.TabIndex = 29;
+            this.label13.Text = "Cep";
+            // 
+            // cep
+            // 
+            this.cep.Location = new System.Drawing.Point(229, 91);
+            this.cep.Name = "cep";
+            this.cep.Size = new System.Drawing.Size(199, 20);
+            this.cep.TabIndex = 28;
+            // 
             // Pessoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 386);
+            this.ClientSize = new System.Drawing.Size(808, 386);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.cep);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.cidade);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.id);
@@ -282,7 +322,7 @@ namespace Bytecom.Administracao
             this.Controls.Add(this.bairro);
             this.Controls.Add(this.endereco);
             this.Controls.Add(this.telefone);
-            this.Controls.Add(this.cpfCnpj);
+            this.Controls.Add(this.cpf_Cnpj);
             this.Controls.Add(this.nome);
             this.Name = "Pessoa";
             this.Text = "Pessoa";
@@ -294,7 +334,7 @@ namespace Bytecom.Administracao
         #endregion
 
         private System.Windows.Forms.TextBox nome;
-        private System.Windows.Forms.TextBox cpfCnpj;
+        private System.Windows.Forms.TextBox cpf_Cnpj;
         private System.Windows.Forms.TextBox telefone;
         private System.Windows.Forms.TextBox endereco;
         private System.Windows.Forms.TextBox bairro;
@@ -317,5 +357,9 @@ namespace Bytecom.Administracao
         private System.Windows.Forms.TextBox id;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox cidade;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox cep;
     }
 }
