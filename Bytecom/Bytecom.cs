@@ -24,19 +24,19 @@ namespace Bytecom
         private void PessoaButtonOnClick(object sender, EventArgs e)
         {
             PessoaGerencial pessoaGerencial = new PessoaGerencial();
-            pessoaGerencial.Show();
+            pessoaGerencial.ShowDialog();
         }
 
         private void ProdutoButtonOnClick(object sender, EventArgs e)
         {
             ProdutoGerencial produtoGerencial = new ProdutoGerencial();
-            produtoGerencial.Show();
+            produtoGerencial.ShowDialog();
         }
 
         private void PedidoButtonOnClick(object sender, EventArgs e)
         {
             PedidoGerencial pedidoGerencial = new PedidoGerencial();
-            pedidoGerencial.Show();
+            pedidoGerencial.ShowDialog();
         }
     }
 }

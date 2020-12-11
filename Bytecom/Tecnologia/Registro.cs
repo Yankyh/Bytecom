@@ -115,10 +115,8 @@ namespace Bytecom.Tecnologia
             conexao.ExecutarDML(update);
         }
 
-        public static Form Selecionar(List<Campo> campo, Form form, String tabela, int id)
+        public static void Selecionar(List<Campo> campo, Form form, String tabela, int id)
         {
-            Form formRetorno = form;
-
             Conexao conexao = new Conexao();
 
             string select = "SELECT * FROM " + tabela + " WHERE ID = " + id;
@@ -139,9 +137,37 @@ namespace Bytecom.Tecnologia
 
                 }
             }
-
-            return formRetorno;
         }
+
+        public static void SelecionarGrid(DataGridView dataGridView, String tabela)
+        {
+            string select = "SELECT * FROM " + tabela;
+
+            Conexao conexao = new Conexao();
+
+            DataTable dataTable = conexao.ExecutaConsulta(select);
+
+            BindingSource bs = new BindingSource();
+
+            bs.DataSource = dataTable;
+            dataGridView.DataSource = bs;
+            dataGridView.Refresh();
+        }
+
+        public static void Deletar(String tabela, int id)
+        {
+            DialogResult confirmar =  MessageBox.Show("Deseja Continuar?", "Excluir registro", MessageBoxButtons.YesNo);
+
+            if (confirmar.ToString().ToUpper() == "YES")
+            {
+                Conexao conexao = new Conexao();
+                string delete = "DELETE FROM " + tabela + " WHERE ID = " + id;
+
+                conexao.ExecutarDML(delete);
+            }
+
+        }
+
 
     }
 }

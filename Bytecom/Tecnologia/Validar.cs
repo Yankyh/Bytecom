@@ -13,9 +13,9 @@ namespace Bytecom.Tecnologia
         {
             foreach (Control item in form.Controls)
             {
-                if (campo.Contains(campo.Find(x => x.Obrigatorio && x.NomeFisico == item.Name)) && String.IsNullOrWhiteSpace(item.Text))
+                if (campo.Contains(campo.Find(x => x.Obrigatorio && x.NomeFisico.ToUpper() == item.Name.ToUpper() && String.IsNullOrWhiteSpace(item.Text))) )
                 {
-                    MessageBox.Show("O campo " + campo.Find(x => x.NomeFisico == item.Name).Nome + " é de preenchimento obrigatório!", "Campo inválido!");
+                    MessageBox.Show("O campo " + campo.Find(x => x.NomeFisico.ToUpper() == item.Name.ToUpper()).Nome + " é de preenchimento obrigatório!", "Campo inválido!");
 
                     return false;
                 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,8 +77,12 @@ namespace Bytecom.Administracao
             {
                 if (idRegistro == 0)
                 {
+                    Auditoria();
+
                     idRegistro = Registro.ProximoId(GetTabela());
+
                     id.Text = idRegistro.ToString();
+
                     Registro.Gravar(campo, this, GetTabela());
                 }
                 else
@@ -93,9 +98,24 @@ namespace Bytecom.Administracao
             return Validar.ValidarPreenchimento(campo, this);
         }
 
-        private String GetTabela()
+        public static String GetTabela()
         {
             return "PESSOA";
         }
+
+        private void Auditoria()
+        {
+            if (idRegistro == 0)
+            {
+                data_Cadastro.Text = DateTime.Now.ToString(new CultureInfo("en-GB"));
+                data_Atualizacao.Text = DateTime.Now.ToString(new CultureInfo("en-GB"));
+            }
+            else
+            {
+                data_Atualizacao.Text = DateTime.Now.ToString(new CultureInfo("en-GB"));
+            }
+
+        }
+
     }
 }
