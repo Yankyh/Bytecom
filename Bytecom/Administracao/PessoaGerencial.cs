@@ -26,7 +26,7 @@ namespace Bytecom.Administracao
             pessoa.ShowDialog();
         }
 
-        private void AlterarOnClick(object sender, EventArgs e)
+        private void AlterarButtonOnClick(object sender, EventArgs e)
         {
             Pessoa pessoa = new Pessoa(Convert.ToInt32(dataGridView.SelectedCells[0].Value));
             pessoa.ShowDialog();

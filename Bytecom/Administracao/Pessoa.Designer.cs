@@ -52,7 +52,7 @@ namespace Bytecom.Administracao
             this.label11 = new System.Windows.Forms.Label();
             this.id = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.removerButton = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.cidade = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -85,25 +85,25 @@ namespace Bytecom.Administracao
             this.endereco.Location = new System.Drawing.Point(434, 91);
             this.endereco.Name = "endereco";
             this.endereco.Size = new System.Drawing.Size(354, 20);
-            this.endereco.TabIndex = 4;
+            this.endereco.TabIndex = 7;
             // 
             // bairro
             // 
             this.bairro.Location = new System.Drawing.Point(24, 151);
             this.bairro.Name = "bairro";
             this.bairro.Size = new System.Drawing.Size(199, 20);
-            this.bairro.TabIndex = 5;
+            this.bairro.TabIndex = 8;
             // 
             // complemento
             // 
             this.complemento.Location = new System.Drawing.Point(229, 151);
             this.complemento.Name = "complemento";
             this.complemento.Size = new System.Drawing.Size(559, 20);
-            this.complemento.TabIndex = 6;
+            this.complemento.TabIndex = 9;
             // 
             // data_Cadastro
             // 
-            this.data_Cadastro.Location = new System.Drawing.Point(21, 209);
+            this.data_Cadastro.Location = new System.Drawing.Point(22, 354);
             this.data_Cadastro.Name = "data_Cadastro";
             this.data_Cadastro.ReadOnly = true;
             this.data_Cadastro.Size = new System.Drawing.Size(114, 20);
@@ -150,7 +150,7 @@ namespace Bytecom.Administracao
             this.celular.Location = new System.Drawing.Point(567, 38);
             this.celular.Name = "celular";
             this.celular.Size = new System.Drawing.Size(113, 20);
-            this.celular.TabIndex = 13;
+            this.celular.TabIndex = 4;
             // 
             // label5
             // 
@@ -182,7 +182,7 @@ namespace Bytecom.Administracao
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(21, 193);
+            this.label8.Location = new System.Drawing.Point(22, 338);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(89, 13);
             this.label8.TabIndex = 17;
@@ -191,7 +191,7 @@ namespace Bytecom.Administracao
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(138, 193);
+            this.label9.Location = new System.Drawing.Point(139, 338);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(102, 13);
             this.label9.TabIndex = 18;
@@ -200,7 +200,7 @@ namespace Bytecom.Administracao
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(258, 193);
+            this.label10.Location = new System.Drawing.Point(259, 338);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(69, 13);
             this.label10.TabIndex = 19;
@@ -208,7 +208,7 @@ namespace Bytecom.Administracao
             // 
             // data_Atualizacao
             // 
-            this.data_Atualizacao.Location = new System.Drawing.Point(141, 209);
+            this.data_Atualizacao.Location = new System.Drawing.Point(142, 354);
             this.data_Atualizacao.Name = "data_Atualizacao";
             this.data_Atualizacao.ReadOnly = true;
             this.data_Atualizacao.Size = new System.Drawing.Size(114, 20);
@@ -216,7 +216,7 @@ namespace Bytecom.Administracao
             // 
             // data_Ultima_Venda
             // 
-            this.data_Ultima_Venda.Location = new System.Drawing.Point(261, 209);
+            this.data_Ultima_Venda.Location = new System.Drawing.Point(262, 354);
             this.data_Ultima_Venda.Name = "data_Ultima_Venda";
             this.data_Ultima_Venda.ReadOnly = true;
             this.data_Ultima_Venda.Size = new System.Drawing.Size(114, 20);
@@ -249,15 +249,16 @@ namespace Bytecom.Administracao
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.GravarOnClick);
             // 
-            // button2
+            // removerButton
             // 
-            this.button2.Location = new System.Drawing.Point(632, 351);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "Excluir";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
+            this.removerButton.Location = new System.Drawing.Point(632, 351);
+            this.removerButton.Name = "removerButton";
+            this.removerButton.Size = new System.Drawing.Size(75, 23);
+            this.removerButton.TabIndex = 25;
+            this.removerButton.Text = "Excluir";
+            this.removerButton.UseVisualStyleBackColor = true;
+            this.removerButton.Visible = false;
+            this.removerButton.Click += new System.EventHandler(this.RemoverButtonOnClick);
             // 
             // label12
             // 
@@ -273,7 +274,7 @@ namespace Bytecom.Administracao
             this.cidade.Location = new System.Drawing.Point(24, 91);
             this.cidade.Name = "cidade";
             this.cidade.Size = new System.Drawing.Size(199, 20);
-            this.cidade.TabIndex = 26;
+            this.cidade.TabIndex = 5;
             // 
             // label13
             // 
@@ -289,7 +290,7 @@ namespace Bytecom.Administracao
             this.cep.Location = new System.Drawing.Point(229, 91);
             this.cep.Name = "cep";
             this.cep.Size = new System.Drawing.Size(199, 20);
-            this.cep.TabIndex = 28;
+            this.cep.TabIndex = 6;
             // 
             // Pessoa
             // 
@@ -300,7 +301,7 @@ namespace Bytecom.Administracao
             this.Controls.Add(this.cep);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cidade);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.removerButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.id);
             this.Controls.Add(this.label11);
@@ -356,7 +357,7 @@ namespace Bytecom.Administracao
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox id;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button removerButton;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox cidade;
         private System.Windows.Forms.Label label13;

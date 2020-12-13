@@ -100,8 +100,20 @@
     <EmbeddedResource Include="Administracao\PessoaGerencial.resx">
       <DependentUpon>PessoaGerencial.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administracao\Produto.resx">
+      <DependentUpon>Produto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracao\ProdutoGerencial.resx">
+      <DependentUpon>ProdutoGerencial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bytecom.resx">
       <DependentUpon>Bytecom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pedido\Pedido.resx">
+      <DependentUpon>Pedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pedido\PedidoGerencial.resx">
+      <DependentUpon>PedidoGerencial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

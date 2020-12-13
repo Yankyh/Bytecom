@@ -15,19 +15,6 @@ namespace Bytecom.Administracao
 {
     public partial class Pessoa : Form
     {
-        /*+  private int id;
-          private String nome;
-          private String cpfCnpj;
-          private String telefone;
-          private String celular;
-          private String endereco;
-          private String bairro;
-          private String complemento;
-          private String cidade;
-          private String cep;
-          private DateTime data_cadastro;
-          private DateTime data_atualizacao;
-          private DateTime data_ultima_venda;*/
         readonly List<Campo> campo;
         private static int idRegistro;
 
@@ -42,6 +29,8 @@ namespace Bytecom.Administracao
             if(idRegistro != 0)
             {
                 CarregarFormulario();
+
+                AtualizarPermissoesFormulario();
             }
         }
 
@@ -87,8 +76,11 @@ namespace Bytecom.Administracao
                 }
                 else
                 {
+                    Auditoria();
                     Registro.Atualizar(campo, this, GetTabela(), idRegistro);
                 }
+
+                AtualizarPermissoesFormulario();
             }
         }
 
@@ -117,5 +109,18 @@ namespace Bytecom.Administracao
 
         }
 
+        private void RemoverButtonOnClick(object sender, EventArgs e)
+        {
+            Registro.Deletar(GetTabela(), Convert.ToInt32(id.Text));
+            this.Close();
+        }
+
+        private void AtualizarPermissoesFormulario()
+        {
+            if (idRegistro != 0)
+            {
+                removerButton.Visible = true;
+            }
+        }
     }
 }

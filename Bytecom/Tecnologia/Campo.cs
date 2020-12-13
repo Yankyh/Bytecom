@@ -12,8 +12,21 @@ namespace Bytecom.Tecnologia
         private String nomeFisico;
         private String tipo;
         private Boolean obrigatorio;
+        private String tabelaFk;
+
+        public Campo(string tabelaFk)
+        {
+            this.tabelaFk = tabelaFk;
+        }
 
         public Campo(String nome, String nomeFisico, String tipo, Boolean obrigatorio)
+        {
+            Nome = nome;
+            NomeFisico = nomeFisico;
+            Tipo = tipo;
+            Obrigatorio = obrigatorio;
+        }
+        public Campo(String nome, String nomeFisico, String tipo, Boolean obrigatorio, String tabelaFk)
         {
             Nome = nome;
             NomeFisico = nomeFisico;
