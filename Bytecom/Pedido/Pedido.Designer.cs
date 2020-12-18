@@ -44,16 +44,22 @@ namespace Bytecom.Pedido
             this.data_emissao = new System.Windows.Forms.DateTimePicker();
             this.valor_desconto = new System.Windows.Forms.TextBox();
             this.valor_total = new System.Windows.Forms.TextBox();
-            this.observacao = new System.Windows.Forms.RichTextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.id_cliente = new System.Windows.Forms.ComboBox();
             this.data_Atualizacao = new System.Windows.Forms.DateTimePicker();
             this.data_Cadastro = new System.Windows.Forms.DateTimePicker();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.itemDataGridView = new System.Windows.Forms.DataGridView();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.itemDataGridView)).BeginInit();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // removerButton
             // 
-            this.removerButton.Location = new System.Drawing.Point(633, 348);
+            this.removerButton.Location = new System.Drawing.Point(633, 328);
             this.removerButton.Name = "removerButton";
             this.removerButton.Size = new System.Drawing.Size(75, 23);
             this.removerButton.TabIndex = 55;
@@ -64,7 +70,7 @@ namespace Bytecom.Pedido
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(714, 348);
+            this.button1.Location = new System.Drawing.Point(714, 328);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 54;
@@ -92,7 +98,7 @@ namespace Bytecom.Pedido
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(23, 335);
+            this.label8.Location = new System.Drawing.Point(23, 315);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(89, 13);
             this.label8.TabIndex = 47;
@@ -144,7 +150,7 @@ namespace Bytecom.Pedido
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(173, 338);
+            this.label9.Location = new System.Drawing.Point(173, 318);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(102, 13);
             this.label9.TabIndex = 48;
@@ -182,24 +188,6 @@ namespace Bytecom.Pedido
             this.valor_total.Size = new System.Drawing.Size(77, 20);
             this.valor_total.TabIndex = 60;
             // 
-            // observacao
-            // 
-            this.observacao.Location = new System.Drawing.Point(22, 132);
-            this.observacao.MaxLength = 999;
-            this.observacao.Name = "observacao";
-            this.observacao.Size = new System.Drawing.Size(767, 190);
-            this.observacao.TabIndex = 61;
-            this.observacao.Text = "";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 116);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 13);
-            this.label6.TabIndex = 62;
-            this.label6.Text = "Observação";
-            // 
             // id_cliente
             // 
             this.id_cliente.FormattingEnabled = true;
@@ -208,14 +196,13 @@ namespace Bytecom.Pedido
             this.id_cliente.Size = new System.Drawing.Size(261, 21);
             this.id_cliente.TabIndex = 63;
             this.id_cliente.DropDown += new System.EventHandler(this.ClienteOnDropDown);
-            this.id_cliente.DropDownClosed += new System.EventHandler(this.ClienteOnDropDownClosed);
             // 
             // data_Atualizacao
             // 
             this.data_Atualizacao.CustomFormat = "dd/MM/yyyy hh:mm:ss";
             this.data_Atualizacao.Enabled = false;
             this.data_Atualizacao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.data_Atualizacao.Location = new System.Drawing.Point(176, 354);
+            this.data_Atualizacao.Location = new System.Drawing.Point(176, 334);
             this.data_Atualizacao.Name = "data_Atualizacao";
             this.data_Atualizacao.Size = new System.Drawing.Size(144, 20);
             this.data_Atualizacao.TabIndex = 64;
@@ -226,22 +213,78 @@ namespace Bytecom.Pedido
             this.data_Cadastro.CustomFormat = "dd/MM/yyyy hh:mm:ss";
             this.data_Cadastro.Enabled = false;
             this.data_Cadastro.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.data_Cadastro.Location = new System.Drawing.Point(26, 354);
+            this.data_Cadastro.Location = new System.Drawing.Point(26, 334);
             this.data_Cadastro.Name = "data_Cadastro";
             this.data_Cadastro.Size = new System.Drawing.Size(144, 20);
             this.data_Cadastro.TabIndex = 65;
             this.data_Cadastro.Value = new System.DateTime(1899, 1, 1, 12, 0, 0, 0);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.itemDataGridView);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(759, 206);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Produto";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(720, 14);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(33, 23);
+            this.button3.TabIndex = 68;
+            this.button3.Text = "-";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(681, 14);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(33, 23);
+            this.button2.TabIndex = 67;
+            this.button2.Text = "+";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.AdicionarItemButtonOnClick);
+            // 
+            // itemDataGridView
+            // 
+            this.itemDataGridView.AllowUserToAddRows = false;
+            this.itemDataGridView.AllowUserToDeleteRows = false;
+            this.itemDataGridView.AllowUserToResizeRows = false;
+            this.itemDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.itemDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.itemDataGridView.Location = new System.Drawing.Point(6, 43);
+            this.itemDataGridView.MultiSelect = false;
+            this.itemDataGridView.Name = "itemDataGridView";
+            this.itemDataGridView.ReadOnly = true;
+            this.itemDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.itemDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.itemDataGridView.Size = new System.Drawing.Size(747, 160);
+            this.itemDataGridView.TabIndex = 66;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Location = new System.Drawing.Point(22, 62);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(767, 232);
+            this.tabControl1.TabIndex = 67;
+            // 
             // Pedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 386);
+            this.ClientSize = new System.Drawing.Size(808, 372);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.data_Cadastro);
             this.Controls.Add(this.data_Atualizacao);
             this.Controls.Add(this.id_cliente);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.observacao);
             this.Controls.Add(this.valor_total);
             this.Controls.Add(this.valor_desconto);
             this.Controls.Add(this.data_emissao);
@@ -259,6 +302,9 @@ namespace Bytecom.Pedido
             this.Controls.Add(this.valor_produto);
             this.Name = "Pedido";
             this.Text = "Pedido";
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.itemDataGridView)).EndInit();
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,10 +326,13 @@ namespace Bytecom.Pedido
         private System.Windows.Forms.DateTimePicker data_emissao;
         private System.Windows.Forms.TextBox valor_desconto;
         private System.Windows.Forms.TextBox valor_total;
-        private System.Windows.Forms.RichTextBox observacao;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox id_cliente;
         private System.Windows.Forms.DateTimePicker data_Atualizacao;
         private System.Windows.Forms.DateTimePicker data_Cadastro;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView itemDataGridView;
+        private System.Windows.Forms.TabControl tabControl1;
     }
 }

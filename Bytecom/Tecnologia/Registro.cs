@@ -117,6 +117,31 @@ namespace Bytecom.Tecnologia
                 {
                     update = update + campoAtual.NomeFisico + " = ";
 
+                    String valor = "";
+
+                    if (item.GetType().ToString() == "System.Windows.Forms.TextBox" || item.GetType().ToString() == "System.Windows.Forms.RichTextBox")
+                    {
+                        valor = item.Text;
+                    }
+                    else
+                    {
+                        if (item.GetType().ToString() == "System.Windows.Forms.ComboBox")
+                        {
+                            ComboBox comboBox = item as ComboBox;
+                            valor = comboBox.SelectedValue.ToString();
+                        }
+                        else
+                        {
+                            if (item.GetType().ToString() == "System.Windows.Forms.DateTimePicker")
+                            {
+                                DateTimePicker dateTimePicker = item as DateTimePicker;
+                                valor = dateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+                            }
+                        }
+
+                    }
+
+
                     if (String.IsNullOrWhiteSpace(item.Text))
                     {
                         update = update + " null, ";
@@ -125,11 +150,11 @@ namespace Bytecom.Tecnologia
                     {
                         if ((campoAtual.Tipo == "String") || (campoAtual.Tipo == "Datetime"))
                         {
-                            update = update + "'" + item.Text + "', ";
+                            update = update + "'" + valor + "', ";
                         }
                         else
                         {
-                            update = update + item.Text + ", ";
+                            update = update + valor + ", ";
                         }
                     }
 
@@ -155,12 +180,36 @@ namespace Bytecom.Tecnologia
 
                         if (campo.Contains(campoAtual))
                         {
-                            item.Text = row[campoAtual.NomeFisico].ToString();
+                            if (item.GetType().ToString() == "System.Windows.Forms.ComboBox")
+                            {
+                                ComboBox comboBox = item as ComboBox;
+                                comboBox.SelectedValue = row[campoAtual.NomeFisico].ToString();
+                            }
+                            else
+                            {
+                                item.Text = row[campoAtual.NomeFisico].ToString();
+                            }
+
                         }
                     }
 
                 }
             }
+        }
+
+        public static void SelecionarSubTabela(DataGridView dataGridView, String tabela, String campoFk, int id = 0)
+        {
+            Conexao conexao = new Conexao();
+
+            string select = "SELECT * FROM " + tabela + " WHERE " + campoFk + " = " + id;
+
+            DataTable dataTable = conexao.ExecutaConsulta(select);
+
+            BindingSource bs = new BindingSource();
+
+            bs.DataSource = dataTable;
+            dataGridView.DataSource = bs;
+            dataGridView.Refresh();
         }
 
         public static void SelecionarGrid(DataGridView dataGridView, String tabela)
@@ -199,10 +248,19 @@ namespace Bytecom.Tecnologia
             Conexao conexao = new Conexao();
 
             DataTable dataTable = conexao.ExecutaConsulta(select);
-
+            
             comboBox.DisplayMember = traducao;
             comboBox.ValueMember = "ID";
             comboBox.DataSource = dataTable;
+        }
+
+        public static DataTable SelecionarPersonalizado(String select)
+        {
+            Conexao conexao = new Conexao();
+
+            DataTable dataTable = conexao.ExecutaConsulta(select);
+
+            return dataTable;
         }
     }
 }

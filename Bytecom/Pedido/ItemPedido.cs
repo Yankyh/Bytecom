@@ -4,26 +4,27 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Bytecom.Administracao
+namespace Bytecom.Pedido
 {
-    public partial class Produto : Form
+    public partial class ItemPedido : Form
     {
         readonly List<Campo> campo;
         private static int idRegistro;
 
         public static int IdRegistro { get => idRegistro; set => idRegistro = value; }
 
-        public Produto(int id)
+        public ItemPedido(int id, int pedido)
         {
             InitializeComponent();
             campo = Campo();
             IdRegistro = id;
+
+            id_Pedido_Venda.Text = pedido.ToString();
 
             if (idRegistro != 0)
             {
@@ -38,14 +39,14 @@ namespace Bytecom.Administracao
             List<Campo> campo = new List<Campo>
             {
                 new Campo("Código", "ID", "Int", false),
-                new Campo("Nome", "NOME", "String", true),
-                new Campo("Código de barras", "CODIGO_BARRAS", "String", true),
-                new Campo("Descrição", "DESCRICAO", "String", true),
-                new Campo("Valor de custo", "VALOR_CUSTO", "Float", true),
-                new Campo("Valor de venda", "VALOR_VENDA", "Float", true),
+                new Campo("Pedido Venda", "ID_PEDIDO_VENDA", "Int", true),
+                new Campo("Produto", "ID_PRODUTO", "Int", true, "PRODUTO"),
+                new Campo("Valor custo", "VALOR_CUSTO", "Float", true),
+                new Campo("Valor venda", "VALOR_VENDA", "Float", true),
+                new Campo("Quantidade", "QUANTIDADE", "Float", true),
+                new Campo("Valor Total", "VALOR_TOTAL", "Float", true),
                 new Campo("Data de cadastro", "DATA_CADASTRO", "Datetime", false),
-                new Campo("Data de atualização", "DATA_ATUALIZACAO", "Datetime", false),
-                new Campo("Data da última venda", "DATA_ULTIMA_VENDA", "Datetime", false)
+                new Campo("Data de atualização", "DATA_ATUALIZACAO", "Datetime", false)
             };
 
             return campo;
@@ -54,6 +55,8 @@ namespace Bytecom.Administracao
         private void CarregarFormulario()
         {
             Registro.Selecionar(campo, this, GetTabela(), IdRegistro);
+
+            ProdutoOnDropDown(null, null);
         }
         private void GravarOnClick(object sender, EventArgs e)
         {
@@ -87,7 +90,7 @@ namespace Bytecom.Administracao
 
         public static String GetTabela()
         {
-            return "PRODUTO";
+            return "ITEMPEDIDOVENDA";
         }
 
         private void Auditoria()
@@ -117,6 +120,28 @@ namespace Bytecom.Administracao
                 removerButton.Visible = true;
             }
         }
+
+        private void ProdutoOnDropDown(object sender, EventArgs e)
+        {
+            Registro.SelecionarComboBox(id_produto, "PRODUTO", "", "NOME");
+        }
+
+        private void ProdutoOnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            String consulta = " SELECT A.ID, " +
+                              "        A.VALOR_CUSTO," +
+                              "        A.VALOR_VENDA " +
+                              "   FROM PRODUTO A " +
+                              "  WHERE A.ID = " + id_produto.SelectedValue;
+
+            foreach (DataRow row in Registro.SelecionarPersonalizado(consulta).Rows)
+            {
+                if (row["id"] != DBNull.Value)
+                {
+                    valor_Custo.Text = row["VALOR_CUSTO"].ToString();
+                    valor_Venda.Text = row["VALOR_VENDA"].ToString();
+                }
+            }
+        }
     }
 }
-

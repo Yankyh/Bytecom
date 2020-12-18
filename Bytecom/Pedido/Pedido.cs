@@ -26,6 +26,7 @@ namespace Bytecom.Pedido
                 CarregarFormulario();
 
                 AtualizarPermissoesFormulario();
+
             }
         }
 
@@ -55,6 +56,9 @@ namespace Bytecom.Pedido
         private void CarregarFormulario()
         {
             Registro.Selecionar(campo, this, GetTabela(), IdRegistro);
+            Registro.SelecionarSubTabela(itemDataGridView, "ITEMPEDIDOVENDA", "ID_PEDIDO_VENDA", idRegistro);
+
+            ClienteOnDropDown(null, null);
         }
         private void GravarOnClick(object sender, EventArgs e)
         {
@@ -95,12 +99,12 @@ namespace Bytecom.Pedido
         {
             if (idRegistro == 0)
             {
-                data_Cadastro.Value = DateTime.Now; //DateTime.Now.ToString(new CultureInfo("en-GB"));
-                data_Atualizacao.Value = DateTime.Now;//DateTime.Now.ToString(new CultureInfo("en-GB"));
+                data_Cadastro.Value = DateTime.Now; 
+                data_Atualizacao.Value = DateTime.Now;
             }
             else
             {
-                data_Atualizacao.Value = DateTime.Now;// DateTime.Now.ToString(new CultureInfo("en-GB"));
+                data_Atualizacao.Value = DateTime.Now;
             }
 
         }
@@ -124,12 +128,10 @@ namespace Bytecom.Pedido
             Registro.SelecionarComboBox(id_cliente, "PESSOA", "", "NOME");
         }
 
-        private void ClienteOnDropDownClosed(object sender, EventArgs e)
+        private void AdicionarItemButtonOnClick(object sender, EventArgs e)
         {
-            if (id_cliente.SelectedIndex > -1)
-            {
-               // MessageBox.Show(id_cliente.SelectedValue.ToString());
-            }
+            ItemPedido itemPedido = new ItemPedido(0, idRegistro);
+            itemPedido.ShowDialog();
         }
     }
 }
