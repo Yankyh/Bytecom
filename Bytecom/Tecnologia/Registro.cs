@@ -50,9 +50,32 @@ namespace Bytecom.Tecnologia
             foreach (Control item in form.Controls)
             {
                 Campo campoAtual = campo.Find(x => x.NomeFisico.ToUpper() == item.Name.ToUpper());
-
                 if (campo.Contains(campoAtual))
                 {
+                    String valor = "";
+
+                    if (item.GetType().ToString() == "System.Windows.Forms.TextBox" || item.GetType().ToString() == "System.Windows.Forms.RichTextBox")
+                    {
+                        valor = item.Text;
+                    }
+                    else
+                    {
+                        if(item.GetType().ToString() == "System.Windows.Forms.ComboBox")
+                        {
+                            ComboBox comboBox = item as ComboBox;
+                            valor = comboBox.SelectedValue.ToString();
+                        }
+                        else
+                        {
+                            if(item.GetType().ToString() == "System.Windows.Forms.DateTimePicker")
+                            {
+                                DateTimePicker dateTimePicker = item as DateTimePicker;
+                                valor = dateTimePicker.Value.ToString("yyyy-MM-dd hh:mm:ss");
+                            }
+                        }
+
+                    }
+
                     if (String.IsNullOrWhiteSpace(item.Text))
                     {
                         insert = insert + " null, ";
@@ -61,11 +84,11 @@ namespace Bytecom.Tecnologia
                     {
                         if ((campoAtual.Tipo == "String") || (campoAtual.Tipo == "Datetime"))
                         {
-                            insert = insert + "'" + item.Text + "', ";
+                            insert = insert + "'" + valor + "', ";
                         }
                         else
                         {
-                            insert = insert + item.Text + ",";
+                            insert = insert + valor + ",";
                         }
                     }
 
@@ -73,6 +96,7 @@ namespace Bytecom.Tecnologia
             }
 
             insert = insert.TrimEnd(' ').TrimEnd(',') + ")";
+            MessageBox.Show(insert);
             conexao.ExecutarDML(insert);
 
             return id;
@@ -168,7 +192,18 @@ namespace Bytecom.Tecnologia
 
         }
 
+        public static void SelecionarComboBox(ComboBox comboBox, String tabela, String where, String traducao)
+        {
+            string select = "SELECT ID, " + traducao + " FROM " + tabela + " " + where;
 
+            Conexao conexao = new Conexao();
+
+            DataTable dataTable = conexao.ExecutaConsulta(select);
+
+            comboBox.DisplayMember = traducao;
+            comboBox.ValueMember = "ID";
+            comboBox.DataSource = dataTable;
+        }
     }
 }
 

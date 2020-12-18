@@ -35,7 +35,6 @@ namespace Bytecom.Administracao
             this.endereco = new System.Windows.Forms.TextBox();
             this.bairro = new System.Windows.Forms.TextBox();
             this.complemento = new System.Windows.Forms.TextBox();
-            this.data_Cadastro = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,8 +46,6 @@ namespace Bytecom.Administracao
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.data_Atualizacao = new System.Windows.Forms.TextBox();
-            this.data_Ultima_Venda = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.id = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -57,6 +54,9 @@ namespace Bytecom.Administracao
             this.cidade = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.cep = new System.Windows.Forms.TextBox();
+            this.data_Atualizacao = new System.Windows.Forms.DateTimePicker();
+            this.data_Cadastro = new System.Windows.Forms.DateTimePicker();
+            this.data_Ultima_Venda = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // nome
@@ -100,14 +100,6 @@ namespace Bytecom.Administracao
             this.complemento.Name = "complemento";
             this.complemento.Size = new System.Drawing.Size(559, 20);
             this.complemento.TabIndex = 9;
-            // 
-            // data_Cadastro
-            // 
-            this.data_Cadastro.Location = new System.Drawing.Point(22, 354);
-            this.data_Cadastro.Name = "data_Cadastro";
-            this.data_Cadastro.ReadOnly = true;
-            this.data_Cadastro.Size = new System.Drawing.Size(114, 20);
-            this.data_Cadastro.TabIndex = 7;
             // 
             // label1
             // 
@@ -191,7 +183,7 @@ namespace Bytecom.Administracao
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(139, 338);
+            this.label9.Location = new System.Drawing.Point(168, 338);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(102, 13);
             this.label9.TabIndex = 18;
@@ -200,27 +192,11 @@ namespace Bytecom.Administracao
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(259, 338);
+            this.label10.Location = new System.Drawing.Point(318, 338);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(69, 13);
             this.label10.TabIndex = 19;
             this.label10.Text = "Última venda";
-            // 
-            // data_Atualizacao
-            // 
-            this.data_Atualizacao.Location = new System.Drawing.Point(142, 354);
-            this.data_Atualizacao.Name = "data_Atualizacao";
-            this.data_Atualizacao.ReadOnly = true;
-            this.data_Atualizacao.Size = new System.Drawing.Size(114, 20);
-            this.data_Atualizacao.TabIndex = 20;
-            // 
-            // data_Ultima_Venda
-            // 
-            this.data_Ultima_Venda.Location = new System.Drawing.Point(262, 354);
-            this.data_Ultima_Venda.Name = "data_Ultima_Venda";
-            this.data_Ultima_Venda.ReadOnly = true;
-            this.data_Ultima_Venda.Size = new System.Drawing.Size(114, 20);
-            this.data_Ultima_Venda.TabIndex = 21;
             // 
             // label11
             // 
@@ -292,11 +268,47 @@ namespace Bytecom.Administracao
             this.cep.Size = new System.Drawing.Size(199, 20);
             this.cep.TabIndex = 6;
             // 
+            // data_Atualizacao
+            // 
+            this.data_Atualizacao.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            this.data_Atualizacao.Enabled = false;
+            this.data_Atualizacao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.data_Atualizacao.Location = new System.Drawing.Point(171, 354);
+            this.data_Atualizacao.Name = "data_Atualizacao";
+            this.data_Atualizacao.Size = new System.Drawing.Size(144, 20);
+            this.data_Atualizacao.TabIndex = 65;
+            this.data_Atualizacao.Value = new System.DateTime(1899, 1, 1, 12, 0, 0, 0);
+            // 
+            // data_Cadastro
+            // 
+            this.data_Cadastro.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            this.data_Cadastro.Enabled = false;
+            this.data_Cadastro.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.data_Cadastro.Location = new System.Drawing.Point(21, 354);
+            this.data_Cadastro.Name = "data_Cadastro";
+            this.data_Cadastro.Size = new System.Drawing.Size(144, 20);
+            this.data_Cadastro.TabIndex = 66;
+            this.data_Cadastro.Value = new System.DateTime(1899, 1, 1, 12, 0, 0, 0);
+            // 
+            // data_Ultima_Venda
+            // 
+            this.data_Ultima_Venda.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            this.data_Ultima_Venda.Enabled = false;
+            this.data_Ultima_Venda.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.data_Ultima_Venda.Location = new System.Drawing.Point(321, 354);
+            this.data_Ultima_Venda.Name = "data_Ultima_Venda";
+            this.data_Ultima_Venda.Size = new System.Drawing.Size(144, 20);
+            this.data_Ultima_Venda.TabIndex = 67;
+            this.data_Ultima_Venda.Value = new System.DateTime(1899, 1, 1, 12, 0, 0, 0);
+            // 
             // Pessoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(808, 386);
+            this.Controls.Add(this.data_Ultima_Venda);
+            this.Controls.Add(this.data_Cadastro);
+            this.Controls.Add(this.data_Atualizacao);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.cep);
             this.Controls.Add(this.label12);
@@ -305,8 +317,6 @@ namespace Bytecom.Administracao
             this.Controls.Add(this.button1);
             this.Controls.Add(this.id);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.data_Ultima_Venda);
-            this.Controls.Add(this.data_Atualizacao);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -318,7 +328,6 @@ namespace Bytecom.Administracao
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.data_Cadastro);
             this.Controls.Add(this.complemento);
             this.Controls.Add(this.bairro);
             this.Controls.Add(this.endereco);
@@ -340,7 +349,6 @@ namespace Bytecom.Administracao
         private System.Windows.Forms.TextBox endereco;
         private System.Windows.Forms.TextBox bairro;
         private System.Windows.Forms.TextBox complemento;
-        private System.Windows.Forms.TextBox data_Cadastro;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -352,8 +360,6 @@ namespace Bytecom.Administracao
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox data_Atualizacao;
-        private System.Windows.Forms.TextBox data_Ultima_Venda;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox id;
         private System.Windows.Forms.Button button1;
@@ -362,5 +368,8 @@ namespace Bytecom.Administracao
         private System.Windows.Forms.TextBox cidade;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox cep;
+        private System.Windows.Forms.DateTimePicker data_Atualizacao;
+        private System.Windows.Forms.DateTimePicker data_Cadastro;
+        private System.Windows.Forms.DateTimePicker data_Ultima_Venda;
     }
 }

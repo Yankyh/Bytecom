@@ -99,12 +99,12 @@ namespace Bytecom.Administracao
         {
             if (idRegistro == 0)
             {
-                data_Cadastro.Text = DateTime.Now.ToString(new CultureInfo("en-GB"));
-                data_Atualizacao.Text = DateTime.Now.ToString(new CultureInfo("en-GB"));
+                data_Cadastro.Value = DateTime.Now;
+                data_Atualizacao.Value = DateTime.Now;
             }
             else
             {
-                data_Atualizacao.Text = DateTime.Now.ToString(new CultureInfo("en-GB"));
+                data_Atualizacao.Value = DateTime.Now;
             }
 
         }

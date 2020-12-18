@@ -17,7 +17,6 @@ namespace Bytecom.Pedido
         public Pedido(int id)
         {
             InitializeComponent();
-            data_emissao.CustomFormat = "dd/MM/yyyy hh:mm:ss";
 
             campo = Campo();
             IdRegistro = id;
@@ -96,12 +95,12 @@ namespace Bytecom.Pedido
         {
             if (idRegistro == 0)
             {
-                data_Cadastro.Text = DateTime.Now.ToString(new CultureInfo("en-GB"));
-                data_Atualizacao.Text = DateTime.Now.ToString(new CultureInfo("en-GB"));
+                data_Cadastro.Value = DateTime.Now; //DateTime.Now.ToString(new CultureInfo("en-GB"));
+                data_Atualizacao.Value = DateTime.Now;//DateTime.Now.ToString(new CultureInfo("en-GB"));
             }
             else
             {
-                data_Atualizacao.Text = DateTime.Now.ToString(new CultureInfo("en-GB"));
+                data_Atualizacao.Value = DateTime.Now;// DateTime.Now.ToString(new CultureInfo("en-GB"));
             }
 
         }
@@ -117,6 +116,19 @@ namespace Bytecom.Pedido
             if (idRegistro != 0)
             {
                 removerButton.Visible = true;
+            }
+        }
+
+        private void ClienteOnDropDown(object sender, EventArgs e)
+        {
+            Registro.SelecionarComboBox(id_cliente, "PESSOA", "", "NOME");
+        }
+
+        private void ClienteOnDropDownClosed(object sender, EventArgs e)
+        {
+            if (id_cliente.SelectedIndex > -1)
+            {
+               // MessageBox.Show(id_cliente.SelectedValue.ToString());
             }
         }
     }

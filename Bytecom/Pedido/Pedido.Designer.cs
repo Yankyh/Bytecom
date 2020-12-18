@@ -38,17 +38,17 @@ namespace Bytecom.Pedido
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.data_Cadastro = new System.Windows.Forms.TextBox();
             this.valor_produto = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.data_Atualizacao = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.data_emissao = new System.Windows.Forms.DateTimePicker();
             this.valor_desconto = new System.Windows.Forms.TextBox();
             this.valor_total = new System.Windows.Forms.TextBox();
             this.observacao = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cliente = new System.Windows.Forms.ComboBox();
+            this.id_cliente = new System.Windows.Forms.ComboBox();
+            this.data_Atualizacao = new System.Windows.Forms.DateTimePicker();
+            this.data_Cadastro = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // removerButton
@@ -60,6 +60,7 @@ namespace Bytecom.Pedido
             this.removerButton.Text = "Excluir";
             this.removerButton.UseVisualStyleBackColor = true;
             this.removerButton.Visible = false;
+            this.removerButton.Click += new System.EventHandler(this.RemoverButtonOnClick);
             // 
             // button1
             // 
@@ -69,6 +70,7 @@ namespace Bytecom.Pedido
             this.button1.TabIndex = 54;
             this.button1.Text = "Gravar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.GravarOnClick);
             // 
             // id
             // 
@@ -132,14 +134,6 @@ namespace Bytecom.Pedido
             this.label1.TabIndex = 40;
             this.label1.Text = "Cliente";
             // 
-            // data_Cadastro
-            // 
-            this.data_Cadastro.Location = new System.Drawing.Point(23, 351);
-            this.data_Cadastro.Name = "data_Cadastro";
-            this.data_Cadastro.ReadOnly = true;
-            this.data_Cadastro.Size = new System.Drawing.Size(114, 20);
-            this.data_Cadastro.TabIndex = 37;
-            // 
             // valor_produto
             // 
             this.valor_produto.Location = new System.Drawing.Point(289, 35);
@@ -150,19 +144,11 @@ namespace Bytecom.Pedido
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(140, 335);
+            this.label9.Location = new System.Drawing.Point(173, 338);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(102, 13);
             this.label9.TabIndex = 48;
             this.label9.Text = "Data de atualização";
-            // 
-            // data_Atualizacao
-            // 
-            this.data_Atualizacao.Location = new System.Drawing.Point(143, 351);
-            this.data_Atualizacao.Name = "data_Atualizacao";
-            this.data_Atualizacao.ReadOnly = true;
-            this.data_Atualizacao.Size = new System.Drawing.Size(114, 20);
-            this.data_Atualizacao.TabIndex = 50;
             // 
             // label5
             // 
@@ -175,6 +161,7 @@ namespace Bytecom.Pedido
             // 
             // data_emissao
             // 
+            this.data_emissao.CustomFormat = "dd/MM/yyyy hh:mm:ss";
             this.data_emissao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.data_emissao.Location = new System.Drawing.Point(538, 35);
             this.data_emissao.Name = "data_emissao";
@@ -213,20 +200,46 @@ namespace Bytecom.Pedido
             this.label6.TabIndex = 62;
             this.label6.Text = "Observação";
             // 
-            // cliente
+            // id_cliente
             // 
-            this.cliente.FormattingEnabled = true;
-            this.cliente.Location = new System.Drawing.Point(22, 35);
-            this.cliente.Name = "cliente";
-            this.cliente.Size = new System.Drawing.Size(261, 21);
-            this.cliente.TabIndex = 63;
+            this.id_cliente.FormattingEnabled = true;
+            this.id_cliente.Location = new System.Drawing.Point(22, 35);
+            this.id_cliente.Name = "id_cliente";
+            this.id_cliente.Size = new System.Drawing.Size(261, 21);
+            this.id_cliente.TabIndex = 63;
+            this.id_cliente.DropDown += new System.EventHandler(this.ClienteOnDropDown);
+            this.id_cliente.DropDownClosed += new System.EventHandler(this.ClienteOnDropDownClosed);
+            // 
+            // data_Atualizacao
+            // 
+            this.data_Atualizacao.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            this.data_Atualizacao.Enabled = false;
+            this.data_Atualizacao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.data_Atualizacao.Location = new System.Drawing.Point(176, 354);
+            this.data_Atualizacao.Name = "data_Atualizacao";
+            this.data_Atualizacao.Size = new System.Drawing.Size(144, 20);
+            this.data_Atualizacao.TabIndex = 64;
+            this.data_Atualizacao.Value = new System.DateTime(1899, 1, 1, 12, 0, 0, 0);
+            // 
+            // data_Cadastro
+            // 
+            this.data_Cadastro.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            this.data_Cadastro.Enabled = false;
+            this.data_Cadastro.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.data_Cadastro.Location = new System.Drawing.Point(26, 354);
+            this.data_Cadastro.Name = "data_Cadastro";
+            this.data_Cadastro.Size = new System.Drawing.Size(144, 20);
+            this.data_Cadastro.TabIndex = 65;
+            this.data_Cadastro.Value = new System.DateTime(1899, 1, 1, 12, 0, 0, 0);
             // 
             // Pedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(808, 386);
-            this.Controls.Add(this.cliente);
+            this.Controls.Add(this.data_Cadastro);
+            this.Controls.Add(this.data_Atualizacao);
+            this.Controls.Add(this.id_cliente);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.observacao);
             this.Controls.Add(this.valor_total);
@@ -237,14 +250,12 @@ namespace Bytecom.Pedido
             this.Controls.Add(this.button1);
             this.Controls.Add(this.id);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.data_Atualizacao);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.data_Cadastro);
             this.Controls.Add(this.valor_produto);
             this.Name = "Pedido";
             this.Text = "Pedido";
@@ -263,16 +274,16 @@ namespace Bytecom.Pedido
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox data_Cadastro;
         private System.Windows.Forms.TextBox valor_produto;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox data_Atualizacao;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker data_emissao;
         private System.Windows.Forms.TextBox valor_desconto;
         private System.Windows.Forms.TextBox valor_total;
         private System.Windows.Forms.RichTextBox observacao;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cliente;
+        private System.Windows.Forms.ComboBox id_cliente;
+        private System.Windows.Forms.DateTimePicker data_Atualizacao;
+        private System.Windows.Forms.DateTimePicker data_Cadastro;
     }
 }
