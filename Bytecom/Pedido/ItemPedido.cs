@@ -54,9 +54,8 @@ namespace Bytecom.Pedido
 
         private void CarregarFormulario()
         {
-            Registro.Selecionar(campo, this, GetTabela(), IdRegistro);
-
             ProdutoOnDropDown(null, null);
+            Registro.Selecionar(campo, this, GetTabela(), IdRegistro);
         }
         private void GravarOnClick(object sender, EventArgs e)
         {
@@ -128,20 +127,60 @@ namespace Bytecom.Pedido
 
         private void ProdutoOnSelectedIndexChanged(object sender, EventArgs e)
         {
-            String consulta = " SELECT A.ID, " +
-                              "        A.VALOR_CUSTO," +
-                              "        A.VALOR_VENDA " +
-                              "   FROM PRODUTO A " +
-                              "  WHERE A.ID = " + id_produto.SelectedValue;
+                String consulta = " SELECT A.ID, " +
+                                  "        A.VALOR_CUSTO," +
+                                  "        A.VALOR_VENDA " +
+                                  "   FROM PRODUTO A " +
+                                  "  WHERE A.ID = " + id_produto.SelectedValue;
 
-            foreach (DataRow row in Registro.SelecionarPersonalizado(consulta).Rows)
-            {
-                if (row["id"] != DBNull.Value)
+                foreach (DataRow row in Registro.SelecionarPersonalizado(consulta).Rows)
                 {
-                    valor_Custo.Text = row["VALOR_CUSTO"].ToString();
-                    valor_Venda.Text = row["VALOR_VENDA"].ToString();
-                }
+                    if (row["id"] != DBNull.Value)
+                    {
+                        valor_Custo.Text = row["VALOR_CUSTO"].ToString();
+                        valor_Venda.Text = row["VALOR_VENDA"].ToString();
+                    }
+                }            
+        }
+
+        private void QuantidadeOnTextChanged(object sender, EventArgs e)
+        {
+            quantidade.Text = Validar.FormatarCampoValor(quantidade);
+
+            if ((Double.TryParse(quantidade.Text, out double valor) && (Double.TryParse(valor_Venda.Text, out double valor2))))
+            {
+                valor_Total.Text = (float.Parse(quantidade.Text) * float.Parse(valor_Venda.Text)).ToString();
             }
+        }
+
+        private void ValorVendaOnLeave(object sender, EventArgs e)
+        {
+             valor_Venda.Text = Validar.FormatarCampoValor(valor_Venda);
+        }
+
+        private void QuantidadeOnLeave(object sender, EventArgs e)
+        {
+             quantidade.Text = Validar.FormatarCampoValor(quantidade);
+        }
+
+        private void ValorVendaOnTextChanged(object sender, EventArgs e)
+        {
+            valor_Venda.Text = Validar.FormatarCampoValor(valor_Venda);
+
+            if ((Double.TryParse(quantidade.Text, out double valor) && (Double.TryParse(valor_Venda.Text, out double valor2))))
+            {
+                valor_Total.Text = (float.Parse(quantidade.Text) * float.Parse(valor_Venda.Text)).ToString();
+            }
+        }
+
+        private void ValorTotalOnTextChanged(object sender, EventArgs e)
+        {
+            valor_Total.Text = Validar.FormatarCampoValor(valor_Total);
+        }
+
+        private void ValorCustoOnTextChanged(object sender, EventArgs e)
+        {
+            valor_Custo.Text = Validar.FormatarCampoValor(valor_Custo);
         }
     }
 }

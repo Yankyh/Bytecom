@@ -133,5 +133,36 @@ namespace Bytecom.Pedido
             ItemPedido itemPedido = new ItemPedido(0, idRegistro);
             itemPedido.ShowDialog();
         }
+
+        private void ValorDescontoOnTextChanged(object sender, EventArgs e)
+        {
+            valor_desconto.Text = Validar.FormatarCampoValor(valor_desconto);
+        }
+
+        private void ValorProdutoOnTextChanged(object sender, EventArgs e)
+        {
+            valor_produto.Text = Validar.FormatarCampoValor(valor_produto);
+        }
+
+        private void ValorTotalOnTextChanged(object sender, EventArgs e)
+        {
+            valor_total.Text = Validar.FormatarCampoValor(valor_total);
+        }
+
+        private void ProdutoGridOnDoubleClick(object sender, EventArgs e)
+        {
+            ItemPedido itemPedido = new ItemPedido(Convert.ToInt32(itemDataGridView.SelectedCells[0].Value), IdRegistro);
+            itemPedido.ShowDialog();
+        }
+
+        private void ExcluirItemButtonOnClick(object sender, EventArgs e)
+        {
+            //Não implementado
+        }
+
+        private void OnFocusActivated(object sender, EventArgs e)
+        {
+
+        }
     }
 }

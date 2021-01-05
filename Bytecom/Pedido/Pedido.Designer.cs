@@ -146,6 +146,7 @@ namespace Bytecom.Pedido
             this.valor_produto.Name = "valor_produto";
             this.valor_produto.Size = new System.Drawing.Size(77, 20);
             this.valor_produto.TabIndex = 31;
+            this.valor_produto.TextChanged += new System.EventHandler(this.ValorProdutoOnTextChanged);
             // 
             // label9
             // 
@@ -180,6 +181,7 @@ namespace Bytecom.Pedido
             this.valor_desconto.Name = "valor_desconto";
             this.valor_desconto.Size = new System.Drawing.Size(77, 20);
             this.valor_desconto.TabIndex = 59;
+            this.valor_desconto.TextChanged += new System.EventHandler(this.ValorDescontoOnTextChanged);
             // 
             // valor_total
             // 
@@ -187,6 +189,7 @@ namespace Bytecom.Pedido
             this.valor_total.Name = "valor_total";
             this.valor_total.Size = new System.Drawing.Size(77, 20);
             this.valor_total.TabIndex = 60;
+            this.valor_total.TextChanged += new System.EventHandler(this.ValorTotalOnTextChanged);
             // 
             // id_cliente
             // 
@@ -240,6 +243,7 @@ namespace Bytecom.Pedido
             this.button3.TabIndex = 68;
             this.button3.Text = "-";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.ExcluirItemButtonOnClick);
             // 
             // button2
             // 
@@ -266,6 +270,7 @@ namespace Bytecom.Pedido
             this.itemDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.itemDataGridView.Size = new System.Drawing.Size(747, 160);
             this.itemDataGridView.TabIndex = 66;
+            this.itemDataGridView.DoubleClick += new System.EventHandler(this.ProdutoGridOnDoubleClick);
             // 
             // tabControl1
             // 
@@ -302,6 +307,7 @@ namespace Bytecom.Pedido
             this.Controls.Add(this.valor_produto);
             this.Name = "Pedido";
             this.Text = "Pedido";
+            this.Activated += new System.EventHandler(this.OnFocusActivated);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.itemDataGridView)).EndInit();
             this.tabControl1.ResumeLayout(false);

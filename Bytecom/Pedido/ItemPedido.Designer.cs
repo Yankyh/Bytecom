@@ -111,6 +111,7 @@ namespace Bytecom.Pedido
             this.valor_Custo.ReadOnly = true;
             this.valor_Custo.Size = new System.Drawing.Size(101, 20);
             this.valor_Custo.TabIndex = 71;
+            this.valor_Custo.TextChanged += new System.EventHandler(this.ValorCustoOnTextChanged);
             // 
             // label3
             // 
@@ -136,6 +137,8 @@ namespace Bytecom.Pedido
             this.quantidade.Name = "quantidade";
             this.quantidade.Size = new System.Drawing.Size(77, 20);
             this.quantidade.TabIndex = 72;
+            this.quantidade.TextChanged += new System.EventHandler(this.QuantidadeOnTextChanged);
+            this.quantidade.Leave += new System.EventHandler(this.QuantidadeOnLeave);
             // 
             // label5
             // 
@@ -150,8 +153,10 @@ namespace Bytecom.Pedido
             // 
             this.valor_Total.Location = new System.Drawing.Point(444, 47);
             this.valor_Total.Name = "valor_Total";
+            this.valor_Total.ReadOnly = true;
             this.valor_Total.Size = new System.Drawing.Size(77, 20);
             this.valor_Total.TabIndex = 74;
+            this.valor_Total.TextChanged += new System.EventHandler(this.ValorTotalOnTextChanged);
             // 
             // label6
             // 
@@ -168,6 +173,8 @@ namespace Bytecom.Pedido
             this.valor_Venda.Name = "valor_Venda";
             this.valor_Venda.Size = new System.Drawing.Size(77, 20);
             this.valor_Venda.TabIndex = 76;
+            this.valor_Venda.TextChanged += new System.EventHandler(this.ValorVendaOnTextChanged);
+            this.valor_Venda.Leave += new System.EventHandler(this.ValorVendaOnLeave);
             // 
             // data_Cadastro
             // 
