@@ -29,9 +29,9 @@ namespace Bytecom.Administracao
             if(idRegistro != 0)
             {
                 CarregarFormulario();
-
-                AtualizarPermissoesFormulario();
             }
+
+            AtualizarPermissoesFormulario();
         }
 
         private List<Campo> Campo()
@@ -121,6 +121,26 @@ namespace Bytecom.Administracao
             {
                 removerButton.Visible = true;
             }
+        }
+
+        private void CPFCNPJOnLeave(object sender, EventArgs e)
+        {
+            cpf_Cnpj.Text = Validar.FormatarCampoCNPJCPF(cpf_Cnpj);
+        }
+
+        private void TelefoneOnLeave(object sender, EventArgs e)
+        {
+            telefone.Text = Validar.FormatarCampoTelefone(telefone);
+        }
+
+        private void CelularOnLeave(object sender, EventArgs e)
+        {
+            celular.Text = Validar.FormatarCampoCelular(celular);
+        }
+
+        private void CepOnLeave(object sender, EventArgs e)
+        {
+            cep.Text = Validar.FormatarCampoCep(cep);
         }
     }
 }

@@ -131,6 +131,7 @@ namespace Bytecom.Administracao
             this.valor_venda.Name = "valor_venda";
             this.valor_venda.Size = new System.Drawing.Size(113, 20);
             this.valor_venda.TabIndex = 33;
+            this.valor_venda.Leave += new System.EventHandler(this.ValorVendaOnLeave);
             // 
             // label4
             // 
@@ -174,6 +175,7 @@ namespace Bytecom.Administracao
             this.valor_custo.Name = "valor_custo";
             this.valor_custo.Size = new System.Drawing.Size(113, 20);
             this.valor_custo.TabIndex = 32;
+            this.valor_custo.Leave += new System.EventHandler(this.ValorCustoOnLeave);
             // 
             // codigo_barras
             // 

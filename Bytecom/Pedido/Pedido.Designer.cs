@@ -49,9 +49,11 @@ namespace Bytecom.Pedido
             this.data_Cadastro = new System.Windows.Forms.DateTimePicker();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.incluirItem = new System.Windows.Forms.Button();
             this.itemDataGridView = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.valor_liquido = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemDataGridView)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -80,16 +82,16 @@ namespace Bytecom.Pedido
             // 
             // id
             // 
-            this.id.Location = new System.Drawing.Point(688, 35);
+            this.id.Location = new System.Drawing.Point(714, 35);
             this.id.Name = "id";
             this.id.ReadOnly = true;
-            this.id.Size = new System.Drawing.Size(101, 20);
+            this.id.Size = new System.Drawing.Size(75, 20);
             this.id.TabIndex = 53;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(685, 16);
+            this.label11.Location = new System.Drawing.Point(711, 16);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(40, 13);
             this.label11.TabIndex = 52;
@@ -107,7 +109,7 @@ namespace Bytecom.Pedido
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(453, 19);
+            this.label4.Location = new System.Drawing.Point(472, 19);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 13);
             this.label4.TabIndex = 43;
@@ -116,7 +118,7 @@ namespace Bytecom.Pedido
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(369, 19);
+            this.label3.Location = new System.Drawing.Point(305, 20);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 13);
             this.label3.TabIndex = 42;
@@ -125,7 +127,7 @@ namespace Bytecom.Pedido
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(286, 19);
+            this.label2.Location = new System.Drawing.Point(222, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 41;
@@ -142,8 +144,9 @@ namespace Bytecom.Pedido
             // 
             // valor_produto
             // 
-            this.valor_produto.Location = new System.Drawing.Point(289, 35);
+            this.valor_produto.Location = new System.Drawing.Point(225, 36);
             this.valor_produto.Name = "valor_produto";
+            this.valor_produto.ReadOnly = true;
             this.valor_produto.Size = new System.Drawing.Size(77, 20);
             this.valor_produto.TabIndex = 31;
             this.valor_produto.TextChanged += new System.EventHandler(this.ValorProdutoOnTextChanged);
@@ -160,7 +163,7 @@ namespace Bytecom.Pedido
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(535, 19);
+            this.label5.Location = new System.Drawing.Point(558, 19);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(86, 13);
             this.label5.TabIndex = 56;
@@ -170,23 +173,24 @@ namespace Bytecom.Pedido
             // 
             this.data_emissao.CustomFormat = "dd/MM/yyyy hh:mm:ss";
             this.data_emissao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.data_emissao.Location = new System.Drawing.Point(538, 35);
+            this.data_emissao.Location = new System.Drawing.Point(561, 35);
             this.data_emissao.Name = "data_emissao";
-            this.data_emissao.Size = new System.Drawing.Size(144, 20);
+            this.data_emissao.Size = new System.Drawing.Size(145, 20);
             this.data_emissao.TabIndex = 58;
             // 
             // valor_desconto
             // 
-            this.valor_desconto.Location = new System.Drawing.Point(372, 35);
+            this.valor_desconto.Location = new System.Drawing.Point(308, 36);
             this.valor_desconto.Name = "valor_desconto";
             this.valor_desconto.Size = new System.Drawing.Size(77, 20);
             this.valor_desconto.TabIndex = 59;
-            this.valor_desconto.TextChanged += new System.EventHandler(this.ValorDescontoOnTextChanged);
+            this.valor_desconto.Leave += new System.EventHandler(this.ValorDescontoOnLeave);
             // 
             // valor_total
             // 
-            this.valor_total.Location = new System.Drawing.Point(455, 35);
+            this.valor_total.Location = new System.Drawing.Point(474, 35);
             this.valor_total.Name = "valor_total";
+            this.valor_total.ReadOnly = true;
             this.valor_total.Size = new System.Drawing.Size(77, 20);
             this.valor_total.TabIndex = 60;
             this.valor_total.TextChanged += new System.EventHandler(this.ValorTotalOnTextChanged);
@@ -196,7 +200,7 @@ namespace Bytecom.Pedido
             this.id_cliente.FormattingEnabled = true;
             this.id_cliente.Location = new System.Drawing.Point(22, 35);
             this.id_cliente.Name = "id_cliente";
-            this.id_cliente.Size = new System.Drawing.Size(261, 21);
+            this.id_cliente.Size = new System.Drawing.Size(198, 21);
             this.id_cliente.TabIndex = 63;
             this.id_cliente.DropDown += new System.EventHandler(this.ClienteOnDropDown);
             // 
@@ -225,7 +229,7 @@ namespace Bytecom.Pedido
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.incluirItem);
             this.tabPage1.Controls.Add(this.itemDataGridView);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -245,15 +249,15 @@ namespace Bytecom.Pedido
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.ExcluirItemButtonOnClick);
             // 
-            // button2
+            // incluirItem
             // 
-            this.button2.Location = new System.Drawing.Point(681, 14);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(33, 23);
-            this.button2.TabIndex = 67;
-            this.button2.Text = "+";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.AdicionarItemButtonOnClick);
+            this.incluirItem.Location = new System.Drawing.Point(681, 14);
+            this.incluirItem.Name = "incluirItem";
+            this.incluirItem.Size = new System.Drawing.Size(33, 23);
+            this.incluirItem.TabIndex = 67;
+            this.incluirItem.Text = "+";
+            this.incluirItem.UseVisualStyleBackColor = true;
+            this.incluirItem.Click += new System.EventHandler(this.AdicionarItemButtonOnClick);
             // 
             // itemDataGridView
             // 
@@ -281,11 +285,31 @@ namespace Bytecom.Pedido
             this.tabControl1.Size = new System.Drawing.Size(767, 232);
             this.tabControl1.TabIndex = 67;
             // 
+            // valor_liquido
+            // 
+            this.valor_liquido.Location = new System.Drawing.Point(391, 35);
+            this.valor_liquido.Name = "valor_liquido";
+            this.valor_liquido.ReadOnly = true;
+            this.valor_liquido.Size = new System.Drawing.Size(77, 20);
+            this.valor_liquido.TabIndex = 69;
+            this.valor_liquido.TextChanged += new System.EventHandler(this.ValorLiquidoOnTextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(389, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(66, 13);
+            this.label6.TabIndex = 68;
+            this.label6.Text = "Valor líquido";
+            // 
             // Pedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(808, 372);
+            this.Controls.Add(this.valor_liquido);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.data_Cadastro);
             this.Controls.Add(this.data_Atualizacao);
@@ -337,8 +361,10 @@ namespace Bytecom.Pedido
         private System.Windows.Forms.DateTimePicker data_Cadastro;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button incluirItem;
         private System.Windows.Forms.DataGridView itemDataGridView;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TextBox valor_liquido;
+        private System.Windows.Forms.Label label6;
     }
 }

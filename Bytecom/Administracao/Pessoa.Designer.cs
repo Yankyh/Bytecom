@@ -69,9 +69,11 @@ namespace Bytecom.Administracao
             // cpf_Cnpj
             // 
             this.cpf_Cnpj.Location = new System.Drawing.Point(288, 38);
+            this.cpf_Cnpj.MaxLength = 20;
             this.cpf_Cnpj.Name = "cpf_Cnpj";
             this.cpf_Cnpj.Size = new System.Drawing.Size(154, 20);
             this.cpf_Cnpj.TabIndex = 1;
+            this.cpf_Cnpj.Leave += new System.EventHandler(this.CPFCNPJOnLeave);
             // 
             // telefone
             // 
@@ -79,6 +81,7 @@ namespace Bytecom.Administracao
             this.telefone.Name = "telefone";
             this.telefone.Size = new System.Drawing.Size(113, 20);
             this.telefone.TabIndex = 2;
+            this.telefone.Leave += new System.EventHandler(this.TelefoneOnLeave);
             // 
             // endereco
             // 
@@ -143,6 +146,7 @@ namespace Bytecom.Administracao
             this.celular.Name = "celular";
             this.celular.Size = new System.Drawing.Size(113, 20);
             this.celular.TabIndex = 4;
+            this.celular.Leave += new System.EventHandler(this.CelularOnLeave);
             // 
             // label5
             // 
@@ -267,6 +271,7 @@ namespace Bytecom.Administracao
             this.cep.Name = "cep";
             this.cep.Size = new System.Drawing.Size(199, 20);
             this.cep.TabIndex = 6;
+            this.cep.Leave += new System.EventHandler(this.CepOnLeave);
             // 
             // data_Atualizacao
             // 

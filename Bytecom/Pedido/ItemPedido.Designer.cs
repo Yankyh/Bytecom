@@ -137,7 +137,6 @@ namespace Bytecom.Pedido
             this.quantidade.Name = "quantidade";
             this.quantidade.Size = new System.Drawing.Size(77, 20);
             this.quantidade.TabIndex = 72;
-            this.quantidade.TextChanged += new System.EventHandler(this.QuantidadeOnTextChanged);
             this.quantidade.Leave += new System.EventHandler(this.QuantidadeOnLeave);
             // 
             // label5
@@ -173,7 +172,6 @@ namespace Bytecom.Pedido
             this.valor_Venda.Name = "valor_Venda";
             this.valor_Venda.Size = new System.Drawing.Size(77, 20);
             this.valor_Venda.TabIndex = 76;
-            this.valor_Venda.TextChanged += new System.EventHandler(this.ValorVendaOnTextChanged);
             this.valor_Venda.Leave += new System.EventHandler(this.ValorVendaOnLeave);
             // 
             // data_Cadastro

@@ -24,10 +24,9 @@ namespace Bytecom.Pedido
             if (idRegistro != 0)
             {
                 CarregarFormulario();
-
-                AtualizarPermissoesFormulario();
-
             }
+
+            AtualizarPermissoesFormulario();
         }
 
         readonly List<Campo> campo;
@@ -42,9 +41,10 @@ namespace Bytecom.Pedido
                 new Campo("Código", "ID", "Int", false),
                 new Campo("Cliente", "ID_CLIENTE", "Int", true, "PESSOA"),
                 new Campo("Data de emissão", "DATA_EMISSAO", "Datetime", true),
-                new Campo("Valor produto", "VALOR_PRODUTO", "Float", true),
+                new Campo("Valor produto", "VALOR_PRODUTO", "Float", false),
                 new Campo("Valor desconto", "VALOR_DESCONTO", "Float", false),
-                new Campo("Valor total", "VALOR_TOTAL", "Float", true),
+                new Campo("Valor total", "VALOR_TOTAL", "Float", false),
+                new Campo("Valor líquido", "VALOR_LIQUIDO", "Float", false),
                 new Campo("Observação", "OBSERVACAO", "String", true), 
                 new Campo("Data de cadastro", "DATA_CADASTRO", "Datetime", false),
                 new Campo("Data de atualização", "DATA_ATUALIZACAO", "Datetime", false)
@@ -81,6 +81,8 @@ namespace Bytecom.Pedido
                 }
 
                 AtualizarPermissoesFormulario();
+                AtualizarProduto();
+                AtualizarCliente();
             }
         }
 
@@ -88,6 +90,16 @@ namespace Bytecom.Pedido
         private Boolean ValidarPreenchimento()
         {
             return Validar.ValidarPreenchimento(campo, this);
+        }
+
+        private void AtualizarProduto()
+        {
+            //Não implementado / Atualizar ultima venda
+        }
+
+        private void AtualizarCliente()
+        {
+            //Não implementado / Atualizar ultima venda
         }
 
         public static String GetTabela()
@@ -111,6 +123,7 @@ namespace Bytecom.Pedido
 
         private void RemoverButtonOnClick(object sender, EventArgs e)
         {
+            //Deve também remover os itens vinculados ao pedido, mas ainda não está implementado.
             Registro.Deletar(GetTabela(), Convert.ToInt32(id.Text));
             this.Close();
         }
@@ -120,6 +133,11 @@ namespace Bytecom.Pedido
             if (idRegistro != 0)
             {
                 removerButton.Visible = true;
+                incluirItem.Enabled = true;
+            }
+            else
+            {
+                incluirItem.Enabled = false;
             }
         }
 
@@ -132,11 +150,6 @@ namespace Bytecom.Pedido
         {
             ItemPedido itemPedido = new ItemPedido(0, idRegistro);
             itemPedido.ShowDialog();
-        }
-
-        private void ValorDescontoOnTextChanged(object sender, EventArgs e)
-        {
-            valor_desconto.Text = Validar.FormatarCampoValor(valor_desconto);
         }
 
         private void ValorProdutoOnTextChanged(object sender, EventArgs e)
@@ -162,7 +175,29 @@ namespace Bytecom.Pedido
 
         private void OnFocusActivated(object sender, EventArgs e)
         {
+            Registro.SelecionarSubTabela(itemDataGridView, "ITEMPEDIDOVENDA", "ID_PEDIDO_VENDA", idRegistro);
+        }
 
+        private void ValorLiquidoOnTextChanged(object sender, EventArgs e)
+        {
+            valor_liquido.Text = Validar.FormatarCampoValor(valor_liquido);
+        }
+
+        private void ValorDescontoOnLeave(object sender, EventArgs e)
+        {
+            valor_desconto.Text = Validar.FormatarCampoValor(valor_desconto);
+
+            String consulta = " SELECT A.VALOR_TOTAL " +
+                              "   FROM PEDIDOVENDA A " +
+                              "  WHERE A.ID = " + idRegistro;
+
+            foreach (DataRow row in Registro.SelecionarPersonalizado(consulta).Rows)
+            {
+                if (row["VALOR_TOTAL"] != DBNull.Value)
+                {
+                    valor_liquido.Text = (Convert.ToDouble(row["VALOR_TOTAL"]) - Convert.ToDouble(valor_desconto.Text)).ToString();
+                }
+            }
         }
     }
 }

@@ -28,9 +28,9 @@ namespace Bytecom.Administracao
             if (idRegistro != 0)
             {
                 CarregarFormulario();
-
-                AtualizarPermissoesFormulario();
             }
+
+            AtualizarPermissoesFormulario();
         }
 
         private List<Campo> Campo()
@@ -116,6 +116,16 @@ namespace Bytecom.Administracao
             {
                 removerButton.Visible = true;
             }
+        }
+
+        private void ValorCustoOnLeave(object sender, EventArgs e)
+        {
+            valor_custo.Text = Validar.FormatarCampoValor(valor_custo);
+        }
+
+        private void ValorVendaOnLeave(object sender, EventArgs e)
+        {
+            valor_venda.Text = Validar.FormatarCampoValor(valor_venda);
         }
     }
 }

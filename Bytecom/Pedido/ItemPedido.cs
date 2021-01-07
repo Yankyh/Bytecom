@@ -29,9 +29,9 @@ namespace Bytecom.Pedido
             if (idRegistro != 0)
             {
                 CarregarFormulario();
-
-                AtualizarPermissoesFormulario();
             }
+
+            AtualizarPermissoesFormulario();
         }
 
         private List<Campo> Campo()
@@ -70,12 +70,15 @@ namespace Bytecom.Pedido
                     id.Text = idRegistro.ToString();
 
                     Registro.Gravar(campo, this, GetTabela());
+
                 }
                 else
                 {
                     Auditoria();
                     Registro.Atualizar(campo, this, GetTabela(), idRegistro);
+
                 }
+                AtualizarPedido();
 
                 AtualizarPermissoesFormulario();
             }
@@ -143,29 +146,19 @@ namespace Bytecom.Pedido
                 }            
         }
 
-        private void QuantidadeOnTextChanged(object sender, EventArgs e)
-        {
-            quantidade.Text = Validar.FormatarCampoValor(quantidade);
-
-            if ((Double.TryParse(quantidade.Text, out double valor) && (Double.TryParse(valor_Venda.Text, out double valor2))))
-            {
-                valor_Total.Text = (float.Parse(quantidade.Text) * float.Parse(valor_Venda.Text)).ToString();
-            }
-        }
-
         private void ValorVendaOnLeave(object sender, EventArgs e)
         {
              valor_Venda.Text = Validar.FormatarCampoValor(valor_Venda);
+
+            if ((Double.TryParse(quantidade.Text, out double valor) && (Double.TryParse(valor_Venda.Text, out double valor2))))
+            {
+                valor_Total.Text = (Convert.ToDouble(quantidade.Text) * Convert.ToDouble(valor_Venda.Text)).ToString();
+            }
         }
 
         private void QuantidadeOnLeave(object sender, EventArgs e)
         {
              quantidade.Text = Validar.FormatarCampoValor(quantidade);
-        }
-
-        private void ValorVendaOnTextChanged(object sender, EventArgs e)
-        {
-            valor_Venda.Text = Validar.FormatarCampoValor(valor_Venda);
 
             if ((Double.TryParse(quantidade.Text, out double valor) && (Double.TryParse(valor_Venda.Text, out double valor2))))
             {
@@ -181,6 +174,31 @@ namespace Bytecom.Pedido
         private void ValorCustoOnTextChanged(object sender, EventArgs e)
         {
             valor_Custo.Text = Validar.FormatarCampoValor(valor_Custo);
+        }
+
+        private void AtualizarPedido()
+        {
+            double valorTotal = 0.00, valorCusto = 0.00;
+
+            String update = "";
+            String consulta = " SELECT SUM(A.VALOR_TOTAL) VALOR_TOTAL, " +
+                         "             SUM(A.VALOR_CUSTO) VALOR_CUSTO " +
+                         "   FROM ITEMPEDIDOVENDA A " +
+                         "  WHERE A.ID_PEDIDO_VENDA = " + id_Pedido_Venda.Text;
+
+            foreach (DataRow row in Registro.SelecionarPersonalizado(consulta).Rows)
+            {
+                if (row["VALOR_TOTAL"] != DBNull.Value)
+                {
+                    valorTotal = Convert.ToDouble(row["VALOR_TOTAL"]);
+                    valorCusto = Convert.ToDouble(row["VALOR_CUSTO"]);
+                }
+            }
+            
+            update = " UPDATE PEDIDOVENDA SET VALOR_TOTAL = " + valorTotal + ", VALOR_PRODUTO = " + valorCusto + " WHERE ID = " + id_Pedido_Venda.Text;
+
+            Registro.Executar(update);
+
         }
     }
 }

@@ -164,6 +164,11 @@ namespace Bytecom.Tecnologia
             conexao.ExecutarDML(update);
         }
 
+        public static void Executar(String comando)
+        {
+            Conexao conexao = new Conexao();
+            conexao.ExecutarDML(comando);
+        }
         public static void Selecionar(List<Campo> campo, Form form, String tabela, int id)
         {
             Conexao conexao = new Conexao();
