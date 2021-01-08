@@ -128,24 +128,6 @@ namespace Bytecom.Pedido
             Registro.SelecionarComboBox(id_produto, "PRODUTO", "", "NOME");
         }
 
-        private void ProdutoOnSelectedIndexChanged(object sender, EventArgs e)
-        {
-                String consulta = " SELECT A.ID, " +
-                                  "        A.VALOR_CUSTO," +
-                                  "        A.VALOR_VENDA " +
-                                  "   FROM PRODUTO A " +
-                                  "  WHERE A.ID = " + id_produto.SelectedValue;
-
-                foreach (DataRow row in Registro.SelecionarPersonalizado(consulta).Rows)
-                {
-                    if (row["id"] != DBNull.Value)
-                    {
-                        valor_Custo.Text = row["VALOR_CUSTO"].ToString();
-                        valor_Venda.Text = row["VALOR_VENDA"].ToString();
-                    }
-                }            
-        }
-
         private void ValorVendaOnLeave(object sender, EventArgs e)
         {
              valor_Venda.Text = Validar.FormatarCampoValor(valor_Venda);
@@ -199,6 +181,24 @@ namespace Bytecom.Pedido
 
             Registro.Executar(update);
 
+        }
+
+        private void ProdutoOnDropDownClosed(object sender, EventArgs e)
+        {
+            String consulta = " SELECT A.ID, " +
+                  "        A.VALOR_CUSTO," +
+                  "        A.VALOR_VENDA " +
+                  "   FROM PRODUTO A " +
+                  "  WHERE A.ID = " + id_produto.SelectedValue;
+
+            foreach (DataRow row in Registro.SelecionarPersonalizado(consulta).Rows)
+            {
+                if (row["id"] != DBNull.Value)
+                {
+                    valor_Custo.Text = row["VALOR_CUSTO"].ToString();
+                    valor_Venda.Text = row["VALOR_VENDA"].ToString();
+                }
+            }
         }
     }
 }

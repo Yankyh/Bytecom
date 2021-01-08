@@ -59,7 +59,7 @@ namespace Bytecom.Pedido
             this.id_produto.Size = new System.Drawing.Size(261, 21);
             this.id_produto.TabIndex = 65;
             this.id_produto.DropDown += new System.EventHandler(this.ProdutoOnDropDown);
-            this.id_produto.SelectedIndexChanged += new System.EventHandler(this.ProdutoOnSelectedIndexChanged);
+            this.id_produto.DropDownClosed += new System.EventHandler(this.ProdutoOnDropDownClosed);
             // 
             // label1
             // 

@@ -96,9 +96,8 @@ namespace Bytecom.Tecnologia
             }
 
             insert = insert.TrimEnd(' ').TrimEnd(',') + ")";
-            MessageBox.Show(insert);
             conexao.ExecutarDML(insert);
-
+            MessageBox.Show("Registro salvo", "Registro", MessageBoxButtons.OK);
             return id;
         }
 
@@ -162,6 +161,7 @@ namespace Bytecom.Tecnologia
             }
             update = update.TrimEnd(' ').TrimEnd(',') + "WHERE ID = " + id;
             conexao.ExecutarDML(update);
+            MessageBox.Show("Registro salvo", "Registro", MessageBoxButtons.OK);
         }
 
         public static void Executar(String comando)
@@ -249,7 +249,7 @@ namespace Bytecom.Tecnologia
         public static void SelecionarComboBox(ComboBox comboBox, String tabela, String where, String traducao)
         {
             string select = "SELECT ID, " + traducao + " FROM " + tabela + " " + where;
-
+            
             Conexao conexao = new Conexao();
 
             DataTable dataTable = conexao.ExecutaConsulta(select);
